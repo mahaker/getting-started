@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import boilerplate.java15.TestEnvironment;
+import boilerplate.java15.domain.employee.Age;
 import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.domain.employee.Name;
 import boilerplate.java15.entity.Employee;
@@ -33,7 +34,7 @@ class EmployeeDaoTest {
     var employee = dao.selectById(EmployeeId.of(1));
     assertNotNull(employee);
     assertEquals(Name.of("ALLEN"), employee.name);
-    assertEquals(30, employee.age);
+    assertEquals(Age.of(30), employee.age);
     assertEquals(0, employee.version);
   }
 
@@ -41,7 +42,7 @@ class EmployeeDaoTest {
   void insert() {
     var employee = new Employee();
     employee.name = Name.of("ABC");
-    employee.age = 25;
+    employee.age = Age.of(25);
     dao.insert(employee);
     var employee2 = dao.selectById(employee.id);
     assertNotNull(employee2);

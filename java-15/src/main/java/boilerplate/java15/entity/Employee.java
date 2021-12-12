@@ -1,5 +1,6 @@
 package boilerplate.java15.entity;
 
+import boilerplate.java15.domain.employee.Age;
 import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.domain.employee.Name;
 import org.seasar.doma.*;
@@ -14,7 +15,11 @@ public class Employee {
 
   public Name name;
 
-  public Integer age;
+  public Age age;
+
+  public void agePlusOne() {
+    this.age = this.age.plusOne();
+  }
 
   @Version public Integer version;
 

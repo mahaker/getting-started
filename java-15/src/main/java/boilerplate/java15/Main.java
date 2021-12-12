@@ -24,7 +24,7 @@ public class Main {
         () -> {
           var repository = new EmployeeRepository(config);
           var employee = repository.selectById(EmployeeId.of(1));
-          employee.age += 1;
+          employee.agePlusOne();
           repository.update(employee);
         });
   }
