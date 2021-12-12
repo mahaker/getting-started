@@ -3,12 +3,9 @@ package boilerplate.java15.dao;
 import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.entity.Employee;
 import java.util.List;
-import org.seasar.doma.Dao;
-import org.seasar.doma.Delete;
-import org.seasar.doma.Insert;
-import org.seasar.doma.Select;
-import org.seasar.doma.Sql;
-import org.seasar.doma.Update;
+import java.util.stream.Collector;
+
+import org.seasar.doma.*;
 
 @Dao
 public interface EmployeeDao {
@@ -22,8 +19,8 @@ public interface EmployeeDao {
         order by
           id
         """)
-  @Select
-  List<Employee> selectAll();
+  @Select(strategy = SelectType.COLLECT)
+  <R> R selectAll(Collector<Employee, ?, R> collector);
 
   @Sql(
       """

@@ -1,5 +1,7 @@
 package boilerplate.java15.dao;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -8,7 +10,11 @@ import boilerplate.java15.domain.employee.Age;
 import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.domain.employee.Name;
 import boilerplate.java15.entity.Employee;
+
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.seasar.doma.jdbc.Config;
@@ -25,8 +31,19 @@ class EmployeeDaoTest {
 
   @Test
   void selectAll() {
-    var employees = dao.selectAll();
+    var employees = dao.selectAll(toList());
     assertEquals(3, employees.size());
+  }
+
+  @Test
+  void selectAll2() {
+    final Map<EmployeeId, Name> employeeNames
+      = dao.selectAll(toMap(employee -> employee.id, employee -> employee.name));
+
+    assertEquals(3, employeeNames.size());
+    assertEquals(Name.of("ALLEN"), employeeNames.get(EmployeeId.of(1)));
+    assertEquals(Name.of("WARD"), employeeNames.get(EmployeeId.of(2)));
+    assertEquals(Name.of("JONES"), employeeNames.get(EmployeeId.of(3)));
   }
 
   @Test
@@ -63,7 +80,7 @@ class EmployeeDaoTest {
   void delete() {
     var employee = dao.selectById(EmployeeId.of(1));
     dao.delete(employee);
-    var employees = dao.selectAll();
+    var employees = dao.selectAll(toList());
     assertEquals(2, employees.size());
   }
 }
