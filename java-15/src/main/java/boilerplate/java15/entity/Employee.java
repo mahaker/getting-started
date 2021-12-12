@@ -1,6 +1,7 @@
 package boilerplate.java15.entity;
 
 import boilerplate.java15.domain.employee.EmployeeId;
+import boilerplate.java15.domain.employee.Name;
 import org.seasar.doma.*;
 
 @Entity(metamodel = @Metamodel)
@@ -11,7 +12,7 @@ public class Employee {
   @SequenceGenerator(sequence = "EMPLOYEE_SEQ")
   public EmployeeId id;
 
-  public String name;
+  public Name name;
 
   public Integer age;
 

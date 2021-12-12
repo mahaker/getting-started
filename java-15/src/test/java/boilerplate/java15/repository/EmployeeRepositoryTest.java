@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import boilerplate.java15.TestEnvironment;
 import boilerplate.java15.domain.employee.EmployeeId;
+import boilerplate.java15.domain.employee.Name;
 import boilerplate.java15.entity.Employee;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +33,7 @@ class EmployeeRepositoryTest {
   void selectById() {
     Employee employee = repository.selectById(EmployeeId.of(1));
     assertNotNull(employee);
-    assertEquals("ALLEN", employee.name);
+    assertEquals(Name.of("ALLEN"), employee.name);
     assertEquals(30, employee.age);
     assertEquals(0, employee.version);
   }
@@ -40,7 +41,7 @@ class EmployeeRepositoryTest {
   @Test
   void insert() {
     Employee employee = new Employee();
-    employee.name = "ABC";
+    employee.name = Name.of("ABC");
     employee.age = 25;
     repository.insert(employee);
     Employee employee2 = repository.selectById(employee.id);
@@ -52,10 +53,10 @@ class EmployeeRepositoryTest {
   @Test
   void update() {
     Employee employee = repository.selectById(EmployeeId.of(1));
-    employee.name = "ABC";
+    employee.name = Name.of("ABC");
     repository.update(employee);
     Employee employee2 = repository.selectById(EmployeeId.of(1));
-    assertEquals("ABC", employee2.name);
+    assertEquals(Name.of("ABC"), employee2.name);
   }
 
   @Test
