@@ -1,5 +1,6 @@
 package boilerplate.java15.dao;
 
+import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.entity.Employee;
 import java.util.List;
 import org.seasar.doma.Dao;
@@ -34,7 +35,7 @@ public interface EmployeeDao {
           id = /* id */0
         """)
   @Select
-  Employee selectById(Integer id);
+  Employee selectById(EmployeeId id);
 
   @Insert
   int insert(Employee employee);

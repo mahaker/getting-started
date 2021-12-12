@@ -1,6 +1,7 @@
 package boilerplate.java15;
 
 import boilerplate.java15.dao.AppDaoImpl;
+import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.repository.EmployeeRepository;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.dialect.H2Dialect;
@@ -22,7 +23,7 @@ public class Main {
     tm.required(
         () -> {
           var repository = new EmployeeRepository(config);
-          var employee = repository.selectById(1);
+          var employee = repository.selectById(EmployeeId.of(1));
           employee.age += 1;
           repository.update(employee);
         });

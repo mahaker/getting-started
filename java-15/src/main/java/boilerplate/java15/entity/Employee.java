@@ -1,12 +1,7 @@
 package boilerplate.java15.entity;
 
-import org.seasar.doma.Entity;
-import org.seasar.doma.GeneratedValue;
-import org.seasar.doma.GenerationType;
-import org.seasar.doma.Id;
-import org.seasar.doma.Metamodel;
-import org.seasar.doma.SequenceGenerator;
-import org.seasar.doma.Version;
+import boilerplate.java15.domain.employee.EmployeeId;
+import org.seasar.doma.*;
 
 @Entity(metamodel = @Metamodel)
 public class Employee {
@@ -14,7 +9,7 @@ public class Employee {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @SequenceGenerator(sequence = "EMPLOYEE_SEQ")
-  public Integer id;
+  public EmployeeId id;
 
   public String name;
 

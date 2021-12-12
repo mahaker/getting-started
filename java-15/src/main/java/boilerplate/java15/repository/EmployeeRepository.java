@@ -1,5 +1,6 @@
 package boilerplate.java15.repository;
 
+import boilerplate.java15.domain.employee.EmployeeId;
 import boilerplate.java15.entity.Employee;
 import boilerplate.java15.entity.Employee_;
 import java.util.List;
@@ -21,7 +22,7 @@ public class EmployeeRepository {
     return entityql.from(e).fetch();
   }
 
-  public Employee selectById(Integer id) {
+  public Employee selectById(EmployeeId id) {
     var e = new Employee_();
     return entityql.from(e).where(c -> c.eq(e.id, id)).fetchOne();
   }
